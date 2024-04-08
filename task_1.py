@@ -29,7 +29,7 @@ print(age2)
 
 # CODUL TĂU VINE MAI JOS:
 del age
-print(age)
+print(age)  # variable age was deleted and will be error
 # CODUL TĂU VINE MAI SUS:
 
 # Asta a fost tot pentru această sarcină

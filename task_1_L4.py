@@ -47,9 +47,9 @@ print(age*age2*age3)
 # Acum afișează împărțirea vârstelor voastre folosind funcția `print`
 
 # CODUL TĂU VINE MAI JOS:
-print(age2/float(age)) 
-print(float(age)/age3)
-print(age2/float(age)/age3) # împărțirea vârstelor trei prieteni
+print(age2/age) 
+print(age/age3)
+print(age2/age/age3) # împărțirea vârstelor trei prieteni
 # CODUL TĂU VINE MAI SUS:
 
 # Acum afișează restul împărțirii vârstelor voastre folosind funcția `print`

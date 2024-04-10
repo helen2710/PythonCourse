@@ -12,7 +12,8 @@ name = 'Elena'
 print(name)
 # CODUL TĂU VINE MAI SUS:
 
-# Acum creează o nouă variabilă numită `name2` și seteaz-o la valoarea variabilei `name` și afișează valoarea variabilei `name2` folosind funcția `print`
+# Acum creează o nouă variabilă numită `name2` și seteaz-o la valoarea variabilei `name` și afișează valoarea variabilei `name2`
+# folosind funcția `print`
 
 # CODUL TĂU VINE MAI JOS:
 name2 = name
@@ -78,7 +79,7 @@ print(text.split())
 
 # CODUL TĂU VINE MAI JOS:
 f_string = f'My name is {name} and  my friend\'s name is {name2}. They are the same. So funny!'
-print(f_string)
+# print(f_string)
 # CODUL TĂU VINE MAI SUS:
 
 # Verifică dacă string-ul creat se termină cu `!`
@@ -109,14 +110,14 @@ print(f_string.index('o'))
 
 # CODUL TĂU VINE MAI JOS:
 string2 ='It is quite common to find women with the name {}. \nIt is unlikely for {} to be a name commonly given to men.'.format(name,name2)
-print(string2)
+# print(string2)
 # CODUL TĂU VINE MAI SUS:
 
 # Concatenează string-ul creat cu string-ul `text`
 
 # CODUL TĂU VINE MAI JOS:
 string_sum = text +'\n' +string2
-print(string_sum)
+# print(string_sum)
 # CODUL TĂU VINE MAI SUS:
 
 # Afișează lungimea string-ului creat

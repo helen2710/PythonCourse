@@ -56,6 +56,8 @@ print(age2/age/age3) # împărțirea vârstelor trei prieteni
 
 # CODUL TĂU VINE MAI JOS:
 print(age2 % age)
+print(age % age3)
+print(age2 % age3)
 # CODUL TĂU VINE MAI SUS:
 
 # Acum afișează rezultatul vârstei tale ridicată la puterea vârstei primului prieten folosind funcția `print`

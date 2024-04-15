@@ -47,9 +47,7 @@ print(age*age2*age3)
 # Acum afișează împărțirea vârstelor voastre folosind funcția `print`
 
 # CODUL TĂU VINE MAI JOS:
-print(age2/age) 
-print(age/age3)
-print(age2/age/age3) # împărțirea vârstelor trei prieteni
+print(age2/age/age3) 
 # CODUL TĂU VINE MAI SUS:
 
 # Acum afișează restul împărțirii vârstelor voastre folosind funcția `print`
@@ -69,7 +67,7 @@ print(age ** age2)
 # Acum afișează rezultatul vârstei primului prieten împărțită la puterea vârstei celui de-al doilea prieten folosind funcția `print`
 
 # CODUL TĂU VINE MAI JOS:
-print(age2 / (age ** age3))  # What do you mean in the task?!!! Sorry, but I didn't understand:)
+print(age2 // age3)  
 # CODUL TĂU VINE MAI SUS:
 
 # Asta a fost tot pentru această sarcină

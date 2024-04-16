@@ -74,9 +74,9 @@ else:
 # Dacă nu conține niciunul dintre ele, afișați un mesaj corespunzător.
 
 # CODUL TĂU VINE MAI JOS:
-if "Python" and  "Java" in text:
+if ("Python" and  "Java") in text:
    print("The text contains both words: 'Python' and 'Java'")
-elif "Java" or "Python" in text:
+elif ("Java" or "Python") in text:
    print("The text contains just one of the words 'Java' or 'Python")
 else:
    print("The text contains neither word 'Python' nor 'Java'")

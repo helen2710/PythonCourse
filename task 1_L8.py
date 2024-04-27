@@ -296,7 +296,7 @@ while i <= exponentiation:
     i +=1
     print()
 while i > 0:
-    for j in range(8-i, exponentiation + 1):
+    for j in range(exponentiation + 3 - i, exponentiation + 1):
          print(3**j, end=" ")
     i -=1
     print()

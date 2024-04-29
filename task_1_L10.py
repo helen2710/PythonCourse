@@ -13,7 +13,7 @@ Utilizați list comprehension.
 
 # CODUL TĂU VINE MAI JOS:
 def task_1():
-    pass
+    return[i for i in range(1,11)]
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -27,7 +27,8 @@ Utilizați list comprehension în proces
 
 # CODUL TĂU VINE MAI JOS:
 def task_2():
-    pass
+    list_patrat = [i*i for i in range(1,11)]
+    return list_patrat
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -41,7 +42,7 @@ Utilizați list comprehension în proces.
 
 # CODUL TĂU VINE MAI JOS:
 def task_3():
-    pass
+    return[ i for i in range(1,11) if i % 2 !=0]
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -54,8 +55,12 @@ va returna o listă aplatizată sau altfel spus o listă cu elementele fiecărei
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_4():
-    pass
+def task_4(list_matrix):
+    list_simple =[]
+    for i in range(len(list_matrix)):
+        for j in range(len(list_matrix[i])):
+            list_simple.append(list_matrix[i][j])
+    return list_simple
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -69,8 +74,8 @@ Exemplu: Pentru n=10 rezultatul returnat va fi ["impar", "par", "impar", "par", 
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_5():
-    pass
+def task_5(n):
+    return ["par" if i % 2 == 0 else "impar" for i in range(1, n + 1)]
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -84,8 +89,8 @@ Exemplu: Pentru n=5 rezultatul returnat va fi {1: 1, 2: 8, 3: 27, 4: 64, 5: 125}
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_6():
-    pass
+def task_6(n):
+   return {i: i ** 3 for i in range(1,n+1)}
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -100,8 +105,8 @@ Exemplu: Pentru n=50 rezultatul returnat va fi {3, 6, 9, 12, 15, 18, 21, 24, 27,
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_7():
-    pass
+def task_7(n):
+    return {i for i in range(1,n+1) if i % 3 == 0}
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -114,8 +119,12 @@ Exemplu: Pentru lista [1, 2, 3, 4, 5] rezultatul va fi 3.0
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_8():
-    pass
+def task_8(list_numbers):
+   sum = 0
+   for i in range(len(list_numbers)):
+      sum +=list_numbers[i]
+   average = sum / len(list_numbers) 
+   return average
 # CODUL TĂU VINE MAI SUS:
 
 
@@ -129,8 +138,8 @@ Exemplu: Pentru numărul 4 rezultatul va fi `True`, iar pentru numărul 5 rezult
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_9():
-    pass
+def task_9(num):
+    return (num % 2 == 0)
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -142,10 +151,10 @@ Task: Creați o funcție cu numele "task_10" care are ca argument numele și vâ
 apoi returnează o descriere a persoanei în forma "Nume: *nume*, Varsta: *varsta*, Oras: *oras*".
 Exemplu: Pentru numele "Ana", vârsta 32 și orașul "București" rezultatul va fi "Nume: Ana, Varsta: 32, Oras: București"
 """
-
 # CODUL TĂU VINE MAI JOS:
-def task_10():
-    pass
+def task_10(nume, varsta, oras):
+      string = "Nume: " + nume + ", Varsta: " + str(varsta) + ", Oras: " + oras
+      return string
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -158,8 +167,8 @@ Exemplu: Pentru lista [10, 20, 30, 40, 50] rezultatul va fi 50
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_11():
-    pass
+def task_11(list_numbers):
+      return max(list_numbers)
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -172,8 +181,11 @@ Exemplu: Pentru numărul 5 rezultatul va fi 120
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_12():
-    pass
+def task_12(n):
+    if n == 0:
+        return 1
+    else:
+        return n * task_12(n - 1)
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -186,8 +198,8 @@ Exemplu: Pentru numerele 3 și 4 rezultatul va fi (7, 12)
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_13():
-    pass
+def task_13(num1, num2):
+    return (num1 + num2), (num1 * num2)
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -200,8 +212,13 @@ Exemplu: Pentru vârsta 32 rezultatul va fi "adult"
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_14():
-    pass
+def task_14(age):
+    if age < 18:
+        return "minor"
+    elif age >17 and age <=65:
+        return "adult"
+    else:
+        return "senior"
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -214,8 +231,9 @@ Exemplu: Pentru string-ul "ana" rezultatul va fi `True`, iar pentru string-ul "t
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_15():
-    pass
+def task_15(string_us):
+    inversion = string_us[::-1]
+    return inversion == string_us
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -228,8 +246,9 @@ Exemplu: Pentru string-ul "test" rezultatul va fi "tset"
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_16():
-    pass
+def task_16(string2):
+    inversion = string2[::-1]
+    return inversion
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -242,8 +261,12 @@ Exemplu: Pentru string-ul "Hello, World!" rezultatul va fi 2
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_17():
-    pass
+def task_17(string_us):
+    result=0
+    for i in range(len(string_us)):
+        if string_us[i] in {" ",".","!", "?"}:
+            result +=1
+    return result
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -256,7 +279,8 @@ Exemplu: Pentru temperatura 0 rezultatul va fi 32.0
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_18():
+def task_18(c):
+    return ( (c * 9/5) + 32 )
     pass
 # CODUL TĂU VINE MAI SUS:
 
@@ -270,13 +294,19 @@ Exemplu: Pentru numărul 7 rezultatul va fi `True`, iar pentru numărul 10 rezul
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_19():
-    pass
+def task_19(num1):
+    if num1 <= 1:
+        return "False"
+    div = 2
+    while div * div <= num1 and num1 % div != 0:
+        div += 1
+    return div * div > num1
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
 print(session.check_task_19(task_19))
 # VERIFICATION PROCESS
+
 
 """
 Task: Creați o funcție cu numele "task_20" care acceptă un număr și returnează `True` dacă numărul este un număr perfect, altfel `False`.
@@ -285,8 +315,12 @@ Exemplu: Pentru numărul 28 rezultatul va fi `True`, iar pentru numărul 10 rezu
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_20():
-    pass
+def task_20(n):
+    num_divis = 0
+    for i in range(1, n):
+        if n % i == 0:
+            num_divis += i
+    return (n == num_divis)
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -300,8 +334,15 @@ Exemplu: Pentru numărul 153 rezultatul va fi `True`, iar pentru numărul 10 rez
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_21():
-    pass
+def task_21(number):
+    exponent = 0
+    sum = 0
+    string = str(number)
+    for i in range(len(string)):
+        exponent += 1
+    for i in range(len(string)):
+        sum += (int(string[i]) ** exponent)
+    return number == sum
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -315,8 +356,12 @@ Exemplu: Pentru numărul 18 rezultatul va fi `True`, iar pentru numărul 14 rezu
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_22():
-    pass
+def task_22(number):
+    sum = 0
+    string = str(number)
+    for i in range(len(string)):
+        sum += int(string[i])
+    return number % sum == 0
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -329,8 +374,14 @@ Exemplu: Pentru numărul 5 rezultatul va fi [0, 1, 1, 2, 3]
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_23():
-    pass
+def task_23(n):
+  if n > 1:
+    lista_num =[0, 1]
+    for i in range(2 ,n):
+        lista_num.append(lista_num[i-2]+lista_num[i-1])
+    return lista_num   
+  else:
+     return n
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -343,8 +394,12 @@ Exemplu: Pentru numărul 10 rezultatul va fi [1, 2, 5, 10]
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_24():
-    pass
+def task_24(number):
+    list_res = []
+    for i in range(1,number+1):
+        if number % i ==0:
+            list_res.append(i)
+    return list_res
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS

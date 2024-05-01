@@ -14,8 +14,11 @@ Exemplu: task_1(1, 2, 3) ➞ 6
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_1():
-    pass
+def task_1(*numbers):
+    suma = 0
+    for number in numbers:
+        suma += number
+    return suma
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -29,8 +32,12 @@ Exemplu: task_2(1, 2, 'a', 'b') ➞ [1, 2]
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_2():
-    pass
+def task_2(*common_item):
+    list_integer =[]
+    for i in common_item:
+        if type(i) == int:
+            list_integer.append(i)
+    return list_integer
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -43,8 +50,11 @@ Exemplu: task_3(1, 4, 5) ➞ 20
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_3():
-    pass
+def task_3(*numbers):
+    fl = 1
+    for i in numbers:
+        fl *= i
+    return fl
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -57,8 +67,11 @@ Exemplu: task_4(a=1, b=2, c=3) ➞ 'a 1 b 2 c 3'
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_4():
-    pass
+def task_4(**var_kwargs):
+    string_result ="'"
+    for key, value in var_kwargs.items():
+        string_result +=  str(key)+ " " + str(value) + " "
+    return string_result
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -74,8 +87,18 @@ Exemplu: task_6(3, 1, 2, a=10, b=20, c='a', d='b') ➞ [1, 2, 3], ['c', 'd']
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_5():
-    pass
+def task_5(*num, **dic_arg):
+    list_int = []
+    list_str = []
+    for i  in num:
+        if type(i) == int:
+            list_int.append(i)
+    for j, v in dic_arg.items():
+        if type(v)  == str:
+            list_str.append(j)
+    list_int.sort() 
+    list_str.sort()
+    return list_int, list_str
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -88,8 +111,9 @@ Exemplu: task_6(a=1, b=2, c=3) ➞ {'a': 1, 'b': 2, 'c': 3}
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_6():
-    pass
+def task_6(**dict_1):
+    dict_result = dict_1
+    return dict_result
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -103,8 +127,21 @@ Exemplu: task_7(1, 'a', 2, 'b') ➞ {'str': ['a', 'b'], 'int': [1, 2]}
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_7():
-    pass
+def task_7(*list_arg):
+    list_int = []
+    list_str = []
+    key1 = 'str'
+    key2 = 'int'
+    dict = {}
+    for i in list_arg:
+     if type(i) == int:
+        # dict[key2].append(i)
+        list_int.append(i)
+     if type(i) == str:
+        list_str.append(i)
+    dict[key1] = list_str
+    dict[key2] = list_int
+    return dict
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -118,8 +155,21 @@ Exemplu: task_8('madam', 'hello', 'level', 'world') ➞ {'palindrom': ['madam', 
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_8():
-    pass
+def task_8(*words):
+    key1 = 'palindrom'
+    key2 = 'non_palindrom'
+    list1=[]
+    list2=[]
+    dict = {}
+    for i in words:
+        inversion = i[::-1]
+        if inversion == i:
+            list1.append(i)
+        else:
+            list2.append(i)
+    dict[key1] = list1
+    dict[key2] = list2
+    return dict
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -133,8 +183,14 @@ Exemplu: task_9(1, 2, 3, 4, 5, number=2) ➞ [2, 4]
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_9():
-    pass
+def task_9(*num, **kw_int):
+    for value in kw_int.values():
+       num_int = value
+    list_int = []
+    for i  in num:
+        if int(i) % num_int == 0:
+            list_int.append(i)
+    return list_int
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -148,8 +204,17 @@ Exemplu: task_10(1, 2, 3, 4, 5, number=2) ➞ [2, 4]
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_10():
-    pass
+def task_10(*num, **kw_int):
+    for value in kw_int.values():
+       num_int = value
+    list_int = []
+    if num_int != 0:
+         for i  in num:
+            if int(i) % num_int == 0:
+             list_int.append(i)
+    else:
+        print("Division by zero is error!") 
+    return list_int
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -164,8 +229,20 @@ Exemplu: task_11(1, 1, 2, 3, 5, 9) ➞ False
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_11():
-    pass
+def task_11(*numbers):
+    n = len(numbers)
+    if n <= 1:
+        return "False"
+    else:
+        list_fib = [0, 1]
+        fib_prev, fib_current = 0, 1
+        for i in numbers:
+            if fib_prev == i:
+                fib_next = fib_prev + fib_current
+                fib_prev, fib_current = fib_current, fib_next
+            else:
+               return "False"     
+        return "True"
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -180,8 +257,17 @@ Exemplu: task_12(1, 2, 3, 4) ➞ False
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_12():
-    pass
+def task_12(*numbers):
+    fl = []
+    for i in numbers:
+        if i <= 1:
+           return "False"
+        d = 2 
+        while d * d <= i and i % d != 0:
+            d += 1
+        if d * d > i:
+            fl.append(1)     
+    return len(fl) == len(numbers)  
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -196,8 +282,15 @@ Exemplu: task_13('hello', 'world') ➞ False
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_13():
-    pass
+def task_13(string1, *string_arg):
+    if len(string1) == len(string_arg):
+        str_res = list(string1)
+        for i in string_arg:
+            if i in str_res:
+                str_res.remove(i)
+        return str_res == []
+    else:
+        return "False"
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -211,8 +304,13 @@ Exemplu: task_14('home', 'same', 'meme', sub_string="me") ➞ ['home', 'meme', '
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_14():
-    pass
+def task_14(*str_args, **dict1):
+    result =[]
+    for value in dict1.values():
+            for i in str_args:
+                if value in i:
+                    result.append(i)
+    return result
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -227,8 +325,17 @@ Exemplu: task_15('home', 'same', 'meme', sub_string = 'me') ➞ {'contains': ['h
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_15():
-    pass
+def task_15(*str_args, **dict1):
+    result = {}
+    result['contains'] = []
+    result['not_contains'] = []
+    for value in dict1.values():
+            for i in str_args:
+                if value in i:
+                   result['contains'].append(i)
+                else:
+                    result['not_contains'].append(i)
+    return result
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -246,8 +353,22 @@ Exemplu: task_16(2, 3, 4, 5, operation='div') ➞ 0.008333333333333333
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_16():
-    pass
+def task_16(num, *list_numbers, **arg_operation):
+     result = num
+     for value in arg_operation.values():
+          for i in list_numbers:
+            if value == 'add':
+                result += i
+            elif value == 'sub':
+                result -= i
+            elif value == 'mul':
+                result *= i
+            elif i == 0:
+                print('Error: Division by zero!')
+                break
+            else:
+                result /= i 
+     return result
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -266,8 +387,22 @@ Exemplu: task_17(2, add=[3, 4, 5], sub=[1, 2]) ➞ 11
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_17():
-    pass
+def task_17(num, **arg_operation):
+     result = num
+     for key in arg_operation.keys():
+            for i in range(len(arg_operation[key])):
+                if key == 'add':
+                    result += arg_operation[key][i]
+                elif key == 'sub':
+                    result -= arg_operation[key][i]
+                elif key == 'mul':
+                    result *= arg_operation[key][i]
+                elif arg_operation[key][i] == 0:
+                    print('Error: Division by zero!')
+                    break
+                else:
+                    result /= arg_operation[key][i]
+     return result
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS

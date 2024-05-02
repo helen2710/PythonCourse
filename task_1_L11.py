@@ -68,9 +68,8 @@ Exemplu: task_4(a=1, b=2, c=3) ➞ 'a 1 b 2 c 3'
 
 # CODUL TĂU VINE MAI JOS:
 def task_4(**var_kwargs):
-    string_result ="'"
-    for key, value in var_kwargs.items():
-        string_result +=  str(key)+ " " + str(value) + " "
+    simb = "':,{}"
+    string_result ="".join(i for i in str(var_kwargs) if i not in simb)
     return string_result
 # CODUL TĂU VINE MAI SUS:
 
@@ -187,8 +186,8 @@ def task_9(*num, **kw_int):
     for value in kw_int.values():
        num_int = value
     list_int = []
-    for i  in num:
-        if int(i) % num_int == 0:
+    for i in num:
+        if i % num_int == 0:
             list_int.append(i)
     return list_int
 # CODUL TĂU VINE MAI SUS:
@@ -206,12 +205,12 @@ Exemplu: task_10(1, 2, 3, 4, 5, number=2) ➞ [2, 4]
 # CODUL TĂU VINE MAI JOS:
 def task_10(*num, **kw_int):
     for value in kw_int.values():
-       num_int = value
+        num_int = value
     list_int = []
     if num_int != 0:
-         for i  in num:
-            if int(i) % num_int == 0:
-             list_int.append(i)
+        for i in num:
+         if i % num_int == 0:
+            list_int.append(i)
     else:
         print("Division by zero is error!") 
     return list_int
@@ -234,7 +233,6 @@ def task_11(*numbers):
     if n <= 1:
         return "False"
     else:
-        list_fib = [0, 1]
         fib_prev, fib_current = 0, 1
         for i in numbers:
             if fib_prev == i:
@@ -266,8 +264,8 @@ def task_12(*numbers):
         while d * d <= i and i % d != 0:
             d += 1
         if d * d > i:
-            fl.append(1)     
-    return len(fl) == len(numbers)  
+            fl.append(i)     
+    return fl == list(numbers)  
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -415,8 +413,18 @@ Exemplu: task_18('hello', 'world') ➞ {'h': 1, 'e': 1, 'l': 3, 'o': 2, 'w': 1, 
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_18():
-    pass
+def task_18(*string_arg):
+        dict = {}
+        result_list = []
+        for x in list(string_arg):
+                for y in list(x):
+                        result_list.append(y)
+        for i in result_list:
+           if i in dict.keys():
+                dict[i] += 1
+           else:
+                dict.update({i: 1})
+        return dict
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -429,8 +437,19 @@ Exemplu: task_19(1, 2, 3, 4, 5, 6, 7, 8, 9) ➞ {2: 1, 3: 1, 5: 1, 7: 1}
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_19():
-    pass
+def task_19(*list_int):
+    dict_result ={}
+    for i in list(list_int):
+        if i > 1:
+           d = 2
+           while d * d <= i and i % d != 0:
+                d += 1
+           if d * d > i:
+                if i in dict_result.keys():
+                        dict_result[i] += 1
+                else:
+                        dict_result.update({i: 1})
+    return dict_result
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -444,8 +463,20 @@ Exemplu: task_20('hello', 'world', 'python') ➞ {5: 2, 6: 1}
 """
 
 # CODUL TĂU VINE MAI JOS:
-def task_20():
-    pass
+def task_20(*string_arg):
+        dict = {}
+        letters_num = []
+        for x in list(string_arg):
+                count =0
+                for y in list(x):
+                        count +=1
+                letters_num.append(count)        
+        for i in letters_num:
+           if i in dict.keys():
+                dict[i] += 1
+           else:
+                dict.update({i: 1})
+        return dict
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS

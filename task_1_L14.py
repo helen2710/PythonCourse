@@ -45,11 +45,13 @@ Ce trebuie să faci:
 
 # CODUL TĂU VINE MAI JOS:
 class Utilizator:
-    def __init__(self,nume):
+    def __init__(self, nume):
         self.nume = nume
-        self._nivel_acces = "Default" 
+        self._nivel_acces = "Default"
+
     def afiseaza_nivel_acces(self):
         return f"{self.nume} are nivelul de acces {self._nivel_acces}"
+    
     def utilizeaza_sistem(self):
         return f"{self.nume} poate utiliza funcții de bază ale sistemului."  
          
@@ -57,8 +59,10 @@ class UtilizatorManager(Utilizator):
     def __init__(self, nume):
         super().__init__(nume)
         self._nivel_acces = "Manager"
+
     def  modifica_setari(self):
         return f"{self.nume} poate modifica setările sistemului."
+    
     def citeste_date_utilizator(self):
         return f"{self.nume} poate citi datele utilizatorilor."
     
@@ -66,8 +70,10 @@ class UtilizatorAdmin(Utilizator):
     def __init__(self, nume):
         super().__init__(nume)
         self._nivel_acces = "Admin"
+
     def  modifica_setari(self):
         return f"{self.nume} poate modifica setările sistemului."
+    
     def modifica_date_utilizator(self):
         return f"{self.nume} poate modifica datele utilizatorilor." 
 # CODUL TĂU VINE MAI SUS:
@@ -168,7 +174,7 @@ Ce trebuie să faci:
 # CODUL TĂU VINE MAI JOS:
 class TechSolutionsApp:
     versiune_applicatie = "1.0"
-    
+
     @staticmethod
     def market_view():
         return f"Vizualizare piață"

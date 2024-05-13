@@ -44,7 +44,6 @@ class DataContainer:
     def __add__(self, list_num2):
         for i in list_num2:
             self.list_numbers.append(i)
-        return self.list_numbers
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -89,7 +88,18 @@ Creează o clasă `DataAnalysis` care va primi ca input o listă de obiecte de t
 
 # CODUL TĂU VINE MAI JOS:
 class DataAnalysis:
-    pass
+    def __init__(self, *lista_obiect: DataContainer):
+        self.list_obj = lista_obiect
+    def add_container(self, nou_cont):
+        self.list_obj += (list(nou_cont),)
+        print(self.list_obj)
+
+    def __call__(self) :
+        list_max =[]
+        list1 = list(self.list_obj)
+        for i in range(len(list1)):
+            list_max.append(max(list1[i]))
+        return list_max
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS
@@ -109,7 +119,55 @@ Creează o clasă `DataStatistics` care va primi ca input o listă de obiecte de
 
 # CODUL TĂU VINE MAI JOS:
 class DataStatistics:
-    pass
+    def __init__(self, *list_obj: DataContainer):
+        self.list_obj = list_obj
+        
+    def add_container(self, nou_cont):
+        self.list_obj += (list(nou_cont),)
+        # print(self.list_obj)
+
+    def mean(self):
+        sum = 0
+        count = 0
+        list_us = list(self.list_obj)
+        for i in range(len(list_us)):
+            for j in range(len(list_us[i])):
+                sum += list_us[i][j]
+                count +=1
+        print(f"Average of all values is {sum/count}")
+        return (sum/count)
+    
+    def median(self):
+        count = 0
+        list_us = list(self.list_obj)
+        list_total =[]
+        for i in range(len(list_us)):
+            for j in range(len(list_us[i])):
+                list_total.append(list_us[i][j])
+                count +=1
+        list_total.sort()
+        if count % 2 != 0:
+            mediana = list_total[count//2]
+        else:
+            mediana = ((list_total[count//2] + list_total[count//2-1])/2)
+        return (f"Median of all values is {mediana}")
+    
+    def min(self):
+        count = 0
+        list_us = list(self.list_obj)
+        minimum = list_us[0][0]
+        for i in range(len(list_us)):
+            for j in range(len(list_us[i])):
+                if list_us[i][j] < minimum:
+                    minimum = list_us[i][j]
+                count +=1
+        return (f"Minimum of all values is {minimum}")
+    
+    def suma(self):
+        suma = 0
+        count = 0
+        list_us = list(self.list_obj)
+        return f"Total sum is {sum( list_us[i][j] for i in range(len(list_us)) for j in range(len(list_us[i])))}"
 
 # CODUL TĂU VINE MAI SUS:
 
@@ -130,8 +188,45 @@ Creează o clasă `DataFilter` care va primi ca input o listă de obiecte de tip
 """
 
 # CODUL TĂU VINE MAI JOS:
-class DataFilter:
-    pass
+class DataFilter(DataStatistics):
+    def __init__(self, *list_obj: DataContainer):
+        super().__init__(*list_obj)
+    
+    def filter_zeros(self):
+        list_us = list(self.list_obj)
+        list_result =[]
+        for i in range(len(list_us)):
+            for j in range(len(list_us[i])):
+                if list_us[i][j] != 0:
+                    list_result.append(list_us[i][j])
+        return (f"List excluding zero is: {list_result}")
+    
+    def filter_negatives(self):
+        list_us = list(self.list_obj)
+        list_result =[]
+        for i in range(len(list_us)):
+            for j in range(len(list_us[i])):
+                if list_us[i][j] >= 0:
+                    list_result.append(list_us[i][j])
+        return (f"List excluding negatives is: {list_result}")
+    
+    def filter_positives(self):
+        list_us = list(self.list_obj)
+        list_result =[]
+        for i in range(len(list_us)):
+            for j in range(len(list_us[i])):
+                if list_us[i][j] < 0:
+                    list_result.append(list_us[i][j])
+        return (f"List excluding positives is: {list_result}")
+    def filter_under_mean(self):
+        media = self.mean()
+        list_us = list(self.list_obj)
+        list_result =[]
+        for i in range(len(list_us)):
+            for j in range(len(list_us[i])):
+                if list_us[i][j] > media:
+                    list_result.append(list_us[i][j])
+        return (f"All values more than the average value = {media} are : {list_result}")
 # CODUL TĂU VINE MAI SUS:
 
 # VERIFICATION PROCESS

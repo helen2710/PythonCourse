@@ -4,6 +4,7 @@
 import psycopg2
 import pandas as pd
 import matplotlib.pyplot as plt
+from numpy.random import random
 from datetime import datetime
 try:
     # try to connect to BD
@@ -29,15 +30,18 @@ except:
 data = pd.read_sql('SELECT * FROM work.product', conn)
 print(data.head(100))
 
-# sql = "select o.order_id , c.city \
-#        from work.orders o \
-#        join work.delivery d on o.delivery_id = d.delivery_id \
-#        join work.address a on a.address_id = o.delivery_id \
-#        join work.city c on c.city_id = a.city_id "
+# -- orders from cities
+sql = "select c1.city_id ,c1.city , count(o.order_id) numbers\
+    from customer c \
+    join orders o on o.customer_id = c.customer_id \
+    join address a on a.address_id =c.address_id \
+    join city c1 on c1.city_id  = a.city_id \
+    group by c1.city_id \
+    order by 3 desc "
 
 
-# --Найдите категорию товара, у которой наибольшее процентное отношение цены 
-# --товаров в таблице Product от общего стоимости всех товаров.
+# -- Категория товара, у которой наибольшее процентное отношение цены 
+# -- товаров в таблице Product от общего стоимости всех товаров.
 # -- Какова будет процентная доля у этой категории?
 
 # sql = "select c.category, sum(p.price) price_cat,  sum(sum(p.price)) over () total_sum,\
@@ -53,12 +57,40 @@ print(data.head(100))
 #     from work.orders o"
 
 # -- получить общую сумму и количество заказов по каждому покупателю  !!!!!!!
-# sql = "select o.customer_id , concat(c.first_name,' ',c.last_name) as name, sum(amount) as total_sum,\
-#     count(order_id) as num_of_orders \
-#     from work.orders o \
-#     join work.customer c on o.customer_id = c.customer_id \
-#     group by o.customer_id,  c.first_name, c.last_name \
-#     order by 3 desc"
+sql = "select o.customer_id , concat(c.first_name,' ',c.last_name) as name, sum(amount) as total_sum,\
+    count(order_id) as num_of_orders \
+    from work.orders o \
+    join work.customer c on o.customer_id = c.customer_id \
+    group by o.customer_id,  c.first_name, c.last_name \
+    order by 3 desc"
+data = pd.read_sql(sql,conn)
+print(data.head())
+x=data['total_sum']
+y = data['num_of_orders']
+colors = ['b', 'c', 'y', 'm', 'r']
+lo = plt.scatter(x, y, marker='o', color=colors[1], label='Amount')
+plt.xlabel('Total amount') # Title for X
+plt.ylabel('Numbers of orders') # Title for Y
+plt.title('Orders by customers') # graph title
+plt.legend()
+plt.show()
+
+# lo = plt.scatter(random(10), random(10), marker='x', color=colors[0])
+# ll = plt.scatter(random(10), random(10), marker='o', color=colors[0])
+# l  = plt.scatter(random(10), random(10), marker='o', color=colors[1])
+# a  = plt.scatter(random(10), random(10), marker='o', color=colors[2])
+# h  = plt.scatter(random(10), random(10), marker='o', color=colors[3])
+# hh = plt.scatter(random(10), random(10), marker='o', color=colors[4])
+# ho = plt.scatter(random(10), random(10), marker='x', color=colors[4])
+
+# plt.legend((lo, ll, l, a, h, hh, ho),
+#            ('Low Outlier', 'LoLo', 'Lo', 'Average', 'Hi', 'HiHi', 'High Outlier'),
+#            scatterpoints=1,
+#            loc='lower left',
+#            ncol=3,
+#            fontsize=8)
+# plt.show()
+
 
 # -- общая сумма заказов мин, макс и средняя сумма по месяцам
 sql = "select date_trunc('MONTH', o.created_date) as date, sum(amount) as suma, min(amount), max(amount), round(avg(amount),2) \
@@ -70,15 +102,14 @@ print(data.head())
 x=[]
 x=[x.append(i.strftime("%B")) for i in data['date']]
 y = data['suma']
-# Graph
+#                Graph:
 # plt.plot(x, y, color='blue', marker='o', markersize=7)
 # plt.xlabel('2023') #Подпись для оси х
 # plt.ylabel('Amount of orders') #Подпись для оси y
 # plt.title('Sum pe month') #Название
 # plt.show()
 
-# Round diagram:
-
+#         Round diagram:
 plt.pie(y, labels=x, autopct='%1.1f%%')
 plt.title("Distribution of orders by month")
 plt.show()
@@ -155,4 +186,5 @@ for i in data:
 category_table.print_num_categ()  
 
 conn.close()
+
 

@@ -1,6 +1,4 @@
 #  First: => pip install matplotlib
-
-
 import psycopg2
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -114,7 +112,17 @@ plt.pie(y, labels=x, autopct='%1.1f%%')
 plt.title("Distribution of orders by month")
 plt.show()
 
+# Status delivery
+sql = "select o.amount , d.status \
+from work.delivery d \
+join work.orders o on o.delivery_id = d.delivery_id \
+group by d.status, o.amount \
+order by 2 "
+    #   \
+    # order by count(p.category_id)"
 
+data = pd.read_sql(sql,conn)
+print(data.head(15))
 
 #-- numbers of products in the each category
 sql = "select c.category , count(*) maximum \
@@ -184,6 +192,8 @@ for i in data:
     category_table.add_category(i)
 # category_table.print_categ()   
 category_table.print_num_categ()  
+
+
 
 conn.close()
 

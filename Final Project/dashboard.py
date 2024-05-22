@@ -1,6 +1,7 @@
 import dash
-import dash_core_components as dcc
-import dash_html_components as html
+# import dash_core_components as dcc
+# import dash_html_components as html
+from dash import dcc, html
 import plotly.express as px
 import pandas as pd
 import psycopg2
@@ -17,46 +18,28 @@ except:
     print('Can`t establish connection to database')
 
 # # Create the app
-# #app = dash.Dash(__name__)
-# app = dash.Dash(name="my_first_dash_app")
-
-# # Load dataset using Plotly
-# tips = px.data.tips()
-
-# fig = px.scatter(tips, x="total_bill", y="tip") # Create a scatterplot
-
-# app.layout = html.Div(children=[
-#    html.H1(children='Hello Dash'),  # Create a title with H1 tag
-
-#    html.Div(children='''
-#        Dash: A web application framework for your data.
-#    '''),  # Display some text
-
-#    dcc.Graph(
-#        id='example-graph',
-#        figure=fig
-#    )  # Display the Plotly figure
-# ])
-
-# if __name__ == '__main__':
-#    app.run_server(debug=True) # Run the Dash app
-
-
-
-import seaborn as sns
 
 app = dash.Dash(__name__)
+
+app_title= html.H1(children='Welcome to the Orders Analysis Dashboard!',
+                 style={"display": "flex", "justify-content": "center"},)
+
 sql = "select o.customer_id , concat(c.first_name,' ',c.last_name) as name, sum(amount) as total_sum,\
     count(order_id) as num_of_orders \
     from work.orders o \
     join work.customer c on o.customer_id = c.customer_id \
     group by o.customer_id,  c.first_name, c.last_name \
     order by 3 desc"
+# Load dataset
 data = pd.read_sql(sql,conn)
-# print(data.head())
-# x=data['total_sum']
-# y = data['num_of_orders']
 
+title_font_templ = dict(family="Courier New",
+                        size= 20,
+                        weight = 'bold',
+                        # style ="italic",
+                        color="Black",
+                        # variant="small-caps",
+                        )
 
 scatter = px.scatter(
    x = data['total_sum'],
@@ -67,26 +50,8 @@ scatter = px.scatter(
    width=800,
    height=400,
 ).update_layout(xaxis_title="Total sum of orders by customers", yaxis_title="Number of orders", title_x=0.5,
-                title_font=dict(family="Courier New",
-                            size= 20,
-                            weight = 'bold',
-                            # style ="italic",
-                            color="Black",
-                            # variant="small-caps",
-                    ))
+                title_font=title_font_templ)
 
-diamonds = sns.load_dataset("diamonds")
-
-
-# scatter = px.scatter(
-#    data_frame=diamonds,
-#    x="price",
-#    y="carat",
-#    color="cut",
-#    title="Carat vs. Price of Diamonds",
-#    width=600,
-#    height=400,
-# )
 
 #-- numbers of products in the each category
 sql = "select c.category , count(*) maximum\
@@ -103,14 +68,8 @@ x = data['category']
 y = data['maximum']
 
 round = px.pie(labels = x, values= y, names= x, title="Percentage products by category")
-round.update_layout(title_x=0.5,
-                    title_font=dict(family="Courier New",
-                            size= 20,
-                            weight = 'bold',
-                            # style ="italic",
-                            color="Black",
-                            # variant="small-caps",
-                    ))
+round.update_layout(title_x = 0.5,
+                    title_font = title_font_templ)
 
 
 
@@ -130,13 +89,7 @@ histogram = px.histogram(
    width=600,
    height=400,
 ).update_layout(xaxis_title="2023 ", yaxis_title="Sales",title_x=0.5,
-                title_font=dict(family="Courier New",
-                            size= 20,
-                            weight = 'bold',
-                            # style ="italic",
-                            color="Black",
-                            # variant="small-caps",
-                            ))
+                title_font=title_font_templ)
 
 
 sql = "select c1.city as city , count(o.order_id) numbers\
@@ -169,13 +122,7 @@ fig = go.Figure(data=[go.Table(
                ))
 ])
 fig.update_layout(title_text='Cities where orders from:', title_x=0.5,
-                   title_font=dict(family="Courier New",
-                            size= 20,
-                            weight = 'bold',
-                            # style ="italic",
-                            color="Black",
-                            # variant="small-caps",
-                            ))
+                   title_font=title_font_templ)
 
 
 left_fig1 = html.Div(children=dcc.Graph(figure=scatter))
@@ -191,23 +138,33 @@ left_fig2 = html.Div(
 right_fig2 = html.Div(
    children=dcc.Graph(figure=fig),
 )
+
+# Status delivery
+
+sql = "select o.amount , d.status \
+    from work.delivery d \
+    join work.orders o on o.delivery_id = d.delivery_id \
+    group by d.status, o.amount \
+    order by 2 "
+data = pd.read_sql(sql,conn)
+
 violin = px.violin(
-   data_frame=diamonds,
-   x="cut",
-   y="price",
-   title="Violin Plot of Cut vs. Price",
+  
+   x = data['status'],
+   y = data['amount'],
+   title="Delivery",
    width=600,
    height=400,
-)
+).update_layout(xaxis_title="Order status", yaxis_title="Sum of order ($)",title_text='Delivery status', title_x=0.5,
+                   title_font=title_font_templ)
 lower_div = html.Div([left_fig2, right_fig2], style={"display": "flex"})
 
 central_div = html.Div(
    children=dcc.Graph(figure=violin),
    style={"display": "flex", "justify-content": "center"},
 )
-app_tit= html.H1(children='Welcome to the Orders Analytics Dashboard!',
-                 style={"display": "flex", "justify-content": "center"},)
-app.layout = html.Div([app_tit, upper_div, lower_div,central_div])
+
+app.layout = html.Div([app_title, upper_div, lower_div,central_div])
 
 if __name__ == "__main__":
    app.run_server(debug=True)

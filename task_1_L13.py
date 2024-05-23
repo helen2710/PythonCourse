@@ -143,7 +143,7 @@ class AppleProduct(Produs):
         self.culoare = culoare
         self.produs_conectat = None
     def combine_products(self,product):
-        if product.culoare == self.culoare:
+        if product.culoare == self.culoare and type(product) == AppleProduct:
             self.produs_conectat = product
             return "Produsul a fost conectat cu succes"
         else:
@@ -202,9 +202,9 @@ print(magazin.returneaza_produs(iphone)) # Va returna textul "Produsul Iphone a 
 
 # CODUL TĂU VINE MAI JOS:
 class Magazin():
-    def vinde_produs(produs):
+    def vinde_produs(produs: Produs):
         return (f"Produsul {produs.numele} a fost vândut cu succes")
-    def returneaza_produs(produs):
+    def returneaza_produs(produs: Produs):
         return (f"Produsul {produs.numele} a fost returnat cu succes")
 # CODUL TĂU VINE MAI SUS:
 

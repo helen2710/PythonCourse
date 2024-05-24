@@ -170,6 +170,15 @@ for i in range(len(data)):
 for value in dict1.values():
      print(value)
 
+request_to_read_data ="select o.customer_id , concat(c.first_name,' ',c.last_name) as name, sum(amount) as total_sum,\
+    count(order_id) as num_of_orders \
+    from work.orders o \
+    join work.customer c on o.customer_id = c.customer_id \
+    group by o.customer_id,  c.first_name, c.last_name \
+    order by 3 desc"
+cursor.execute(request_to_read_data)
+data = cursor.fetchall()
+
 
 class Categorys:
     def __init__(self):
@@ -193,8 +202,5 @@ for i in data:
 # category_table.print_categ()   
 category_table.print_num_categ()  
 
-
-
+cursor.close()
 conn.close()
-
-

@@ -231,9 +231,8 @@ Creează o funcție lambda numită `task18` care calculează suma pătratelor nu
 
 # CODUL TĂU VINE MAI JOS
 def task18(lista):
-    even_numbers = list(filter(lambda x: x % 2 == 0, lista))
-    sum = 0
-    return (lambda sum: sum + (x ** 2) for x in even_numbers)
+    suma=sum((x ** 2) for x in list(filter(lambda x: x % 2 == 0, lista)))
+    return suma
 # CODUL TĂU VINE MAI SUS
 
 # VERIFICATION PROCESS
@@ -245,7 +244,7 @@ Creează o funcție lambda numită `task19` care verifică dacă un an dat este 
 """
 
 # CODUL TĂU VINE MAI JOS
-task19 = None
+task19 = lambda year: (year % 4 == 0 and year % 100 != 0) or year % 400 == 0
 # CODUL TĂU VINE MAI SUS
 
 # VERIFICATION PROCESS
@@ -257,7 +256,9 @@ Creează o funcție lambda numită `task20` care găsește cel mai lung cuvânt 
 """
 
 # CODUL TĂU VINE MAI JOS
-task20 = None
+def task20(lista):
+    res = max(lista, key=lambda item: len(item))
+    return res
 # CODUL TĂU VINE MAI SUS
 
 # VERIFICATION PROCESS
@@ -271,7 +272,8 @@ Creează un generator numit `task21` care generează numere de la 1 la 10.
 
 # CODUL TĂU VINE MAI JOS
 def task21():
-    pass
+    for i in range(1,11):
+        yield i
 # CODUL TĂU VINE MAI SUS
 
 # VERIFICATION PROCESS
@@ -284,7 +286,8 @@ Creează un generator numit `task22` care generează pătratele numerelor de la 
 
 # CODUL TĂU VINE MAI JOS
 def task22():
-    pass
+    for i in range(1,11):
+        yield i ** 2
 # CODUL TĂU VINE MAI SUS
 
 # VERIFICATION PROCESS
@@ -296,8 +299,9 @@ Creează un generator numit `task23` care generează caracterele unui string pri
 """
 
 # CODUL TĂU VINE MAI JOS
-def task23():
-    pass
+def task23(string):
+    for char in string:
+        yield char
 # CODUL TĂU VINE MAI SUS
 
 # VERIFICATION PROCESS
@@ -309,8 +313,11 @@ Creează un generator numit `task24` care generează numere pare până la un li
 """
 
 # CODUL TĂU VINE MAI JOS
-def task24():
-    pass
+def task24(end=10):
+    x = 2
+    while x <= end:
+        yield x
+        x +=2
 # CODUL TĂU VINE MAI SUS
 
 # VERIFICATION PROCESS
@@ -322,8 +329,13 @@ Creează un generator numit `task25` care primește ca input un număr n și gen
 """
 
 # CODUL TĂU VINE MAI JOS
-def task25():
-    pass
+def task25(n):
+    i=1
+    a, b = 0, 1
+    while i <= n:
+        yield a
+        a, b = b, a + b
+        i +=1
 # CODUL TĂU VINE MAI SUS
 
 # VERIFICATION PROCESS
@@ -335,8 +347,16 @@ Creează un generator numit `task26` care generează numere prime până la o li
 """
 
 # CODUL TĂU VINE MAI JOS
-def task26():
-    pass
+def task26(n):
+    yield 2
+    i = 3
+    while i < n:
+        for a in task26(int(i ** 0.5)+1):
+            if i % a == 0:
+                break
+        else:
+            yield i
+        i += 2
 # CODUL TĂU VINE MAI SUS
 
 # VERIFICATION PROCESS
@@ -348,8 +368,9 @@ Creează un generator numit `task27` care generează numere într-un interval sp
 """
 
 # CODUL TĂU VINE MAI JOS
-def task27():
-    pass
+def task27(start, end, pas):
+    for i in range(start, end, pas):
+        yield i
 # CODUL TĂU VINE MAI SUS
 
 # VERIFICATION PROCESS
@@ -364,8 +385,10 @@ output-ul va fi: "c", "ci", "cia", "ciao", "i", "ia", "iao", "a", "ao", "o"
 """
 
 # CODUL TĂU VINE MAI JOS
-def task28():
-    pass
+def task28(string):
+    for i in range(len(string)): 
+        for j in range(i+1, len(string)+1): 
+            yield string[i:j]
 # CODUL TĂU VINE MAI SUS
 
 # VERIFICATION PROCESS
@@ -377,8 +400,11 @@ Creează un generator numit `task29` care generează factorialul numerelor de la
 """
 
 # CODUL TĂU VINE MAI JOS
-def task29():
-    pass
+def task29(n):
+    fact = 1 
+    for i in range(1, n+1): 
+        fact *= i 
+        yield fact 
 # CODUL TĂU VINE MAI SUS
 
 # VERIFICATION PROCESS
@@ -390,8 +416,14 @@ Creează un generator numit `task30` care generează cifrele unui număr în ord
 """
 
 # CODUL TĂU VINE MAI JOS
-def task30():
-    pass
+def task30(number): 
+    for i in range(len(number)):
+        reversed_num = 0
+        while i > 0:
+            digit = i % 10
+            reversed_num = reversed_num * 10 + digit
+            i //= 10
+            yield reversed_num
 # CODUL TĂU VINE MAI SUS
 
 # VERIFICATION PROCESS
@@ -406,8 +438,12 @@ output-ul va fi: (1,), (2,), (3,), (4,), (1, 2), (1, 3), (1, 4), (2, 3), (2, 4),
 """
 
 # CODUL TĂU VINE MAI JOS
-def task31():
-    pass
+import itertools
+def task31(lista): 
+    combination = [] 
+    for r in range(1, len(lista) + 1):
+     combination.extend(itertools.combinations(lista, r))
+    return combination
 # CODUL TĂU VINE MAI SUS
 
 # VERIFICATION PROCESS
@@ -419,8 +455,11 @@ Creează un generator numit `task32` care generează suma curentă a unei liste 
 """
 
 # CODUL TĂU VINE MAI JOS
-def task32():
-    pass
+def task32(numbers):
+    sum = 0
+    for i in numbers:
+        sum += i
+        yield sum  
 # CODUL TĂU VINE MAI SUS
 
 # VERIFICATION PROCESS
@@ -436,7 +475,10 @@ output-ul va fi: 1, 3, 5, 7, 9
 
 # CODUL TĂU VINE MAI JOS
 def task33(a, d, n):
-    pass
+    num = a
+    for i in range(1,n+1):
+        yield num
+        num += d
 # CODUL TĂU VINE MAI SUS
 
 # VERIFICATION PROCESS
@@ -448,8 +490,9 @@ Creează un generator numit `task34` care generează puterile lui 2 până la o 
 """
 
 # CODUL TĂU VINE MAI JOS
-def task34():
-    pass
+def task34(end):
+    for i in range(1, end+1):
+        yield i * i
 # CODUL TĂU VINE MAI SUS
 
 # VERIFICATION PROCESS
@@ -464,8 +507,12 @@ output-ul va fi: 2, 6, 18, 54, 162, ...
 """
 
 # CODUL TĂU VINE MAI JOS
-def task35():
-    pass
+def task35(a, r):
+    first = a 
+    while True:
+        yield first
+        seq = first * r
+        first = seq
 # CODUL TĂU VINE MAI SUS
 
 # VERIFICATION PROCESS
@@ -480,8 +527,13 @@ output-ul va fi: (1, 2, 3), (1, 3, 2), (2, 1, 3), (2, 3, 1), (3, 1, 2), (3, 2, 1
 """
 
 # CODUL TĂU VINE MAI JOS
-def task36():
-    pass
+def task36(list_numb):
+    if len(list_numb) == 1:
+        yield list_numb
+    else:
+        for p in task36(list_numb[1:]):
+            for i in range(len(list_numb)):
+                yield p[:i] + list_numb[0:1] + p[i:]        
 # CODUL TĂU VINE MAI SUS
 
 # VERIFICATION PROCESS
@@ -493,8 +545,15 @@ Creează un generator numit `task37` care generează toți factorii primi ai unu
 """
 
 # CODUL TĂU VINE MAI JOS
-def task37():
-    pass
+def task37(number):
+    p,i = 2,1              
+    while p*p <= number:           
+        while number % p == 0:     
+            yield p         
+            number //= p  
+        p,i = p + i, 2  
+    if number>1: 
+        yield number
 # CODUL TĂU VINE MAI SUS
 
 # VERIFICATION PROCESS
@@ -506,8 +565,18 @@ Creează un generator numit `task38` care generează reprezentarea binară a num
 """
 
 # CODUL TĂU VINE MAI JOS
-def task38():
-    pass
+def task38(n):
+    for i in range(1, n + 1):
+        str = ""
+        binar = i
+        # Convert decimal number to binary number
+        while binar:
+            if binar & 1:
+                str = "1" + str
+            else:
+                str = "0" + str
+            binar >>= 1  
+        yield str
 # CODUL TĂU VINE MAI SUS
 
 # VERIFICATION PROCESS
@@ -523,7 +592,15 @@ output-ul va fi: "abc", "acb", "bac", "bca", "cab", "cba"
 
 # CODUL TĂU VINE MAI JOS
 def task39(s):
-    pass
+    if len(s) == 0:
+        return [""]
+    result = [s]
+    for i in range(len(s)):       
+        result,part = [],result
+        for p in part: 
+            for j,c in enumerate(p[i:],i):
+                result.append(p[:i]+c+p[i:j]+p[j+1:])
+    yield result
 # CODUL TĂU VINE MAI SUS
 
 # VERIFICATION PROCESS

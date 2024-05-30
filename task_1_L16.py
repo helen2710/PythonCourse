@@ -645,8 +645,16 @@ Creează un decorator numit `task42` care afișează mesaje "Before" și "After"
 """
 
 # CODUL TĂU VINE MAI JOS
-def task42():
-    pass
+def task42(funct):
+     def wrapper(*args, **kwargs):
+        print("Before")
+        rezultat = funct(*args, **kwargs)
+        return rezultat
+     return wrapper
+
+@task42
+def after():
+    print("After")
 # CODUL TĂU VINE MAI SUS
 
 # VERIFICATION PROCESS

@@ -166,6 +166,65 @@ central_div = html.Div(
 
 app.layout = html.Div([app_title, upper_div, lower_div,central_div])
 
+cursor = conn.cursor() 
+
+request_to_read_data = "select category_id as num,category as category  from work.category order by category_id asc"
+
+cursor.execute(request_to_read_data)
+
+data = cursor.fetchall()
+dict1={}
+        
+for i in range(len(data)):
+    for j in range(len(data[i])-1):
+        dict1[i] = ({'num':data[i][j], 'category':data[i][j+1]})
+print("Dictionary Categories:")
+for value in dict1.values():
+     print(value)
+
+# 10 maximum sales by cities
+
+request_to_read_data ="select c1.city , count(o.order_id) numbers \
+from customer c \
+join orders o on o.customer_id = c.customer_id \
+join address a on a.address_id =c.address_id \
+join city c1 on c1.city_id  = a.city_id \
+group by c1.city \
+order by 2 desc \
+limit 10"
+
+cursor.execute(request_to_read_data)
+data = cursor.fetchall()
+
+# Create class for  dictionary with data from tables BD and functions for output data
+
+class TableBD:
+    def __init__(self):
+        self._categories ={}
+                   
+    # count = 1
+    def add_row(self, categ):
+        # self._categories[self.count] = categ
+        self._categories.update([categ])
+
+        # self.count += 1
+    def print_values(self):
+        for value in self._categories.values():
+            print(value)
+    def print_name(self):
+        for key,value in self._categories.items():
+            print(key, value)   
+
+
+city_table = TableBD()
+
+for i in data:
+    city_table.add_row(i)
+
+# city_table.print_values()
+
+city_table.print_name()  
+
 if __name__ == "__main__":
    app.run_server(debug=True)
 conn.close()

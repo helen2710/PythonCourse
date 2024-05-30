@@ -34,9 +34,10 @@ Run the app:
 python dashboard.py
 Open a browser at http://127.0.0.1:8050/
 
-Screenshots
+![alt text](image.png)
+![alt text](image-1.png)
 
 
 Notes:
-
+The project development is in progress. 
 

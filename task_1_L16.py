@@ -617,8 +617,12 @@ Aici, n este indexul termenului (începând de la 0), iar n! (n factorial) este 
 """
 
 # CODUL TĂU VINE MAI JOS
-def task40():
-    pass
+def task40(n):
+    a, b = 1, a + 6
+    termen = 2 * a + b
+    while a <= n:        
+        yield 2 * a + b
+        a += 1
 # CODUL TĂU VINE MAI SUS
 
 # VERIFICATION PROCESS
@@ -632,8 +636,18 @@ Creează un decorator numit `task41` care afișează timpul de execuție al unei
 
 # CODUL TĂU VINE MAI JOS
 import time
-def task41():
-    pass
+def task41(func):
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        rezultat = func(*args, **kwargs)
+        end = time.time()
+        print(f"Execution time: {end - start} secunde")
+        return rezultat
+    return wrapper
+
+@task41
+def mult(a, b):
+    return a * b
 # CODUL TĂU VINE MAI SUS
 
 # VERIFICATION PROCESS
@@ -647,7 +661,7 @@ Creează un decorator numit `task42` care afișează mesaje "Before" și "After"
 # CODUL TĂU VINE MAI JOS
 def task42(funct):
      def wrapper(*args, **kwargs):
-        print("Before")
+        # print("Before")
         rezultat = funct(*args, **kwargs)
         return rezultat
      return wrapper
@@ -679,8 +693,21 @@ Creează un decorator numit `task44` care numără de câte ori o funcție este 
 """
 
 # CODUL TĂU VINE MAI JOS
-def task44():
-    pass
+def task44(funct):
+    def wrapped(*args, **kwargs):
+        wrapped.calls += 1
+        return funct(*args, **kwargs)
+
+    wrapped.calls = 0
+    return wrapped
+@task44
+def multiply(a, b):
+    return a * b
+
+multiply(6, 3)
+multiply(5, 4)
+n_calls = multiply.calls
+print(f"Count: {n_calls}")
 # CODUL TĂU VINE MAI SUS
 
 # VERIFICATION PROCESS
@@ -692,8 +719,14 @@ Creează un decorator numit `task45` care convertește rezultatul unei funcții 
 """
 
 # CODUL TĂU VINE MAI JOS
-def task45():
-    pass
+def task45(f):
+    def wrapper(text):
+       print(text.upper())
+    return wrapper
+   
+@task45    
+def print_t(text):
+    return(text)
 # CODUL TĂU VINE MAI SUS
 
 # VERIFICATION PROCESS
